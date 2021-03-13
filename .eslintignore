@@ -1,0 +1,13 @@
+ node.js
+node_modules/
+
+# Bundle artifacts
+*.jsbundle
+
+# @generated: @expo/electron-adapter@0.0.48
+/.expo/*
+# Expo Web
+/web-build/*
+# electron-webpack
+/dist
+# @end @expo/electron-adapter
