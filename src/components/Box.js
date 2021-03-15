@@ -2,6 +2,8 @@ import React from 'react';
 import { StyleSheet, TouchableWithoutFeedback } from 'react-native';
 import { config } from 'react-spring/native';
 import { Spring } from 'react-spring/renderprops-native';
+
+import PreferencesContext from 'app/context/preferences';
 import AnimatedView from '#/AnimatedView';
 
 class Box extends React.Component {
@@ -15,22 +17,32 @@ class Box extends React.Component {
     this.setState((prevState) => ({
       position: {
         ...prevState.position,
-        x: Math.random() * (400 - -400) + -400,
+        x: Math.random() * (100 - -100) + -100,
       },
     }));
   };
 
   render() {
     return (
-      <Spring native to={this.state.position} config={config.wobbly}>
-        {(position) => (
-          <TouchableWithoutFeedback onPress={this.move}>
-            <AnimatedView
-              style={[styles.box, { transform: [{ translateX: position.x }] }]}
-            />
-          </TouchableWithoutFeedback>
+      <PreferencesContext.Consumer>
+        {({ theme }) => (
+          <Spring native to={this.state.position} config={config.wobbly}>
+            {(position) => (
+              <TouchableWithoutFeedback onPress={this.move}>
+                <AnimatedView
+                  style={[
+                    styles.box,
+                    {
+                      backgroundColor: theme.colors.primary,
+                      transform: [{ translateX: position.x }],
+                    },
+                  ]}
+                />
+              </TouchableWithoutFeedback>
+            )}
+          </Spring>
         )}
-      </Spring>
+      </PreferencesContext.Consumer>
     );
   }
 }
@@ -39,7 +51,6 @@ const styles = StyleSheet.create({
   box: {
     width: 100,
     height: 100,
-    backgroundColor: 'skyblue',
     borderRadius: 10,
   },
 });

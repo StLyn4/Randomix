@@ -1,6 +1,6 @@
 {
   "name": "Randomix",
-  "icon": "src/assets/icon.png",
+  "icon": "src/assets/images/logo/icon.png",
   "displayName": "Randomix",
   "expo": {
     "name": "Randomix",
@@ -18,8 +18,8 @@
       "versionCode": 1
     },
     "splash": {
-      "image": "src/assets/icon.png",
-      "backgroundColor": "#fefefe"
+      "image": "src/assets/images/logo/splash.png",
+      "backgroundColor": "#212121"
     }
   }
 }
