@@ -1,4 +1,4 @@
-import { app, BrowserWindow } from 'electron';
+import { app, BrowserWindow, screen } from 'electron';
 import * as path from 'path';
 import { format as formatUrl } from 'url';
 
@@ -8,13 +8,23 @@ const isDevelopment = process.env.NODE_ENV !== 'production';
 let mainWindow;
 
 function createMainWindow() {
+  const primaryDisplay = screen.getPrimaryDisplay();
+  const {
+    width: screenWidth,
+    height: screenHeight,
+  } = primaryDisplay.workAreaSize;
+  const { scaleFactor } = primaryDisplay;
+
+  const width = Math.round(screenWidth * scaleFactor * 0.25);
+  const height = Math.round(screenHeight * scaleFactor * 0.75);
+
   const browserWindow = new BrowserWindow({
     backgroundColor: '#fefefe',
     titleBarStyle: 'hiddenInset',
-    minWidth: 500,
-    width: 500,
-    minHeight: 800,
-    height: 800,
+    minWidth: width,
+    width,
+    minHeight: height,
+    height,
     webPreferences: {
       nodeIntegration: true,
     },
