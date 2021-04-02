@@ -20,6 +20,7 @@
     "splash": {
       "image": "src/assets/images/logo/splash.png",
       "backgroundColor": "#212121"
-    }
+    },
+    "icon": "src/assets/images/logo/icon.png"
   }
 }
