@@ -3,10 +3,12 @@ import { createMaterialBottomTabNavigator } from '@react-navigation/material-bot
 import { Ionicons } from '@expo/vector-icons';
 
 import PreferencesContext from 'app/context/preferences';
-import Test from '@/Test';
+import XorShift from '%/XorShift';
+import MT from '%/MT';
+import Fortune from '%/Fortune';
+import Game from '%/Game';
 
 const Tabs = createMaterialBottomTabNavigator();
-const None = () => null;
 
 export default function MainTabs() {
   const { theme } = React.useContext(PreferencesContext);
@@ -20,12 +22,16 @@ export default function MainTabs() {
       inactiveColor={theme.colors.text}
     >
       <Tabs.Screen
-        name="Notes"
-        component={Test}
+        name="XorShift+"
+        component={XorShift}
         options={{
           tabBarIcon: (tabInfo) => (
             <Ionicons
-              name={tabInfo.focused ? 'musical-notes' : 'musical-notes-outline'}
+              name={
+                tabInfo.focused
+                  ? 'chevron-forward-circle'
+                  : 'chevron-forward-circle-outline'
+              }
               size={25}
               color={tabInfo.color}
             />
@@ -34,12 +40,12 @@ export default function MainTabs() {
         }}
       />
       <Tabs.Screen
-        name="Image"
-        component={None}
+        name="Вихрь Мерсенна"
+        component={MT}
         options={{
           tabBarIcon: (tabInfo) => (
             <Ionicons
-              name={tabInfo.focused ? 'image' : 'image-outline'}
+              name={tabInfo.focused ? 'flash' : 'flash-outline'}
               size={25}
               color={tabInfo.color}
             />
@@ -48,12 +54,28 @@ export default function MainTabs() {
         }}
       />
       <Tabs.Screen
-        name="Some people"
-        component={Test}
+        name="Fortune"
+        component={Fortune}
         options={{
           tabBarIcon: (tabInfo) => (
             <Ionicons
-              name={tabInfo.focused ? 'people' : 'people-outline'}
+              name={tabInfo.focused ? 'eye' : 'eye-outline'}
+              size={25}
+              color={tabInfo.color}
+            />
+          ),
+          tabBarColor: theme.dark ? null : theme.colors.surface,
+        }}
+      />
+      <Tabs.Screen
+        name="Поиграем!"
+        component={Game}
+        options={{
+          tabBarIcon: (tabInfo) => (
+            <Ionicons
+              name={
+                tabInfo.focused ? 'game-controller' : 'game-controller-outline'
+              }
               size={25}
               color={tabInfo.color}
             />

@@ -16,10 +16,10 @@ export default function RootNavigator() {
   return (
     <View style={{ width: '100%', height: '100%' }}>
       <Stack.Navigator
-        animationEnabled
         initialRouteName="MainTabs"
         headerMode="screen"
         screenOptions={{
+          animationEnabled: true,
           header: (nav) => {
             const { options } = nav.scene.descriptor;
             const title =
@@ -34,7 +34,7 @@ export default function RootNavigator() {
                   onPress={
                     nav.previous
                       ? nav.navigation.goBack
-                      : () => nav.navigation.navigate('Info')
+                      : () => nav.navigation.navigate('Информация')
                   }
                   hitSlop={{ top: 30, bottom: 30, left: 30, right: 30 }}
                 >
@@ -76,16 +76,17 @@ export default function RootNavigator() {
           name="MainTabs"
           component={MainTabs}
           options={({ route }) => {
-            const routeName = getFocusedRouteNameFromRoute(route) ?? 'Notes';
+            const routeName =
+              getFocusedRouteNameFromRoute(route) ?? 'XorShift+';
             return {
               headerTitle: `Randomix: ${routeName}`,
             };
           }}
         />
         <Stack.Screen
-          name="Info"
+          name="Информация"
           component={Info}
-          options={{ headerTitle: 'Randomix: Info' }}
+          options={{ headerTitle: 'Randomix: Информация' }}
         />
       </Stack.Navigator>
     </View>

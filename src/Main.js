@@ -1,5 +1,5 @@
 import React from 'react';
-import { View } from 'react-native';
+import { View, Appearance } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
@@ -42,21 +42,27 @@ class Main extends React.Component {
     });
   };
 
+  isDarkTheme = async () => {
+    const isDarkTheme = await AsyncStorage.getItem('isDarkTheme').catch(
+      () => Appearance.getColorScheme() === 'dark',
+    );
+    return isDarkTheme ?? Appearance.getColorScheme() === 'dark';
+  };
+
   componentDidMount = async () => {
-    try {
-      const isDarkTheme = await AsyncStorage.getItem('isDarkTheme');
-      if (isDarkTheme !== null) {
-        this.setState({ isDark: JSON.parse(isDarkTheme) });
-      }
-    } catch (e) {
-      /* Nope */
-    }
+    this.setState({ isDark: await this.isDarkTheme() });
   };
 
   render() {
     const theme = this.state.isDark ? CombinedDarkTheme : CombinedDefaultTheme;
     return (
-      <View style={{ width: '100%', height: '100%' }}>
+      <View
+        style={{
+          width: '100%',
+          height: '100%',
+          backgroundColor: theme.colors.background,
+        }}
+      >
         <PaperProvider
           theme={theme}
           settings={{ icon: (props) => <Ionicons {...props} /> }}
