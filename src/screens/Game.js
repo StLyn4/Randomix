@@ -1,18 +1,13 @@
 import React from 'react';
 import { ScrollView, View, StyleSheet } from 'react-native';
 import { Text, List, TextInput, Button, Menu } from 'react-native-paper';
-import { config } from 'react-spring/native';
-import { Spring } from 'react-spring/renderprops-native';
 import { Ionicons } from '@expo/vector-icons';
 import random from 'fortune-js';
 
 import PreferencesContext from 'app/context/preferences';
 import NumberInput from '@/NumberInput';
 import Dice from '@/Dice';
-
-import coinHead from 'app/assets/images/coin/head.png';
-import coinTail from 'app/assets/images/coin/tail.png';
-import { AnimatedCoinPlate } from '#/Animated';
+import CoinPlate from '@/CoinPlate';
 
 class Game extends React.Component {
   state = {
@@ -228,19 +223,13 @@ class Game extends React.Component {
 
             <Text style={styles.title}>Что выпадет?</Text>
             <View style={styles.row}>
-              <Spring to={this.state.coin3Progress} config={config.wobbly}>
-                {(coin) => (
-                  <AnimatedCoinPlate
-                    plateStyle={{
-                      flex: 1,
-                      backgroundColor: theme.colors.primary,
-                    }}
-                    headSource={coinHead}
-                    tailSource={coinTail}
-                    progress={coin.progress}
-                  />
-                )}
-              </Spring>
+              <CoinPlate
+                progress={this.state.coin3Progress}
+                plateStyle={{
+                  flex: 1,
+                  backgroundColor: theme.colors.primary,
+                }}
+              />
               <View style={{ flex: 1 }}>
                 <Menu.Item
                   icon={

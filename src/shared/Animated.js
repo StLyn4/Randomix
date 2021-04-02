@@ -1,12 +1,11 @@
-import { View, Text } from 'react-native';
+import { View, Text, Image } from 'react-native';
 import { animated } from 'react-spring/renderprops-native';
 
 import CodeBlock from '@/CodeBlock';
-import CoinPlate from '@/CoinPlate';
 
 const AnimatedView = animated(View);
 const AnimatedText = animated(Text);
+const AnimatedImage = animated(Image);
 const AnimatedCodeBlock = animated(CodeBlock);
-const AnimatedCoinPlate = animated(CoinPlate);
 
-export { AnimatedView, AnimatedText, AnimatedCodeBlock, AnimatedCoinPlate };
+export { AnimatedView, AnimatedText, AnimatedImage, AnimatedCodeBlock };
